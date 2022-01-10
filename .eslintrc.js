@@ -1,28 +1,27 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es6: true
   },
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     semi: ['warn', 'always'],
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'error'
   },
-  overrides: [
-    {
-      files: ['**/*.stories.*'],
-      rules: {
-        'import/no-anonymous-default-export': 'off',
-      },
-    },
-  ],
+  overrides: [{
+    files: ['**/*.stories.*'],
+    rules: {
+      'import/no-anonymous-default-export': 'off'
+    }
+  }],
+  extends: ["plugin:storybook/recommended"]
 };
