@@ -6,9 +6,6 @@
 # testing
 /coverage
 
-# production
-/public
-
 /temp
 
 /storybook-static
