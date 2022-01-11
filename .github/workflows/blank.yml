@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ develop ]
   pull_request:
     branches: [ main ]
 
@@ -24,13 +24,69 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.13.0'
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2.1.7
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      - name: Install dependencies
+        id: Npm-install
+        run: npm install
+
+      - name: Do linter check
+        id: linter
+        run: npm run lint
+
+      - name: Run tests
+        id: Run-tests
+        run: npm run test
+
+      - name: Run chromatic test
+        id: Chromatic-test
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: npx chromatic
+
+      - name: Build project
+        id: Project-build
+        run: npm run build
+
+      - name: Deploy application to GHP /otus-react-redux-hw-4/application 🚀
+        id: Deploy-app
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: develop # The branch the action should deploy to.
+          FOLDER: otus-react-redux-hw-4/public  # The folder the action should deploy.
+          TARGET_FOLDER: otus-react-redux-hw-4/application
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+
+      - name: Deploy storybook to GHP /otus-react-redux-hw-4/storybook 🚀
+        id: Deploy-storybook
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: develop # The branch the action should deploy to.
+          FOLDER: otus-react-redux-hw-4/storybook-static # The folder the action should deploy.
+          TARGET_FOLDER: otus-react-redux-hw-4/storybook
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+
+      - name: Deploy test-report to GHP /otus-react-redux-hw-4/test-report 🚀
+        id: Deploy-test-report
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: develop # The branch the action should deploy to.
+          FOLDER: otus-react-redux-hw-4/temp # The folder the action should deploy.
+          TARGET_FOLDER: otus-react-redux-hw-4/test-report
+          CLEAN: true # Automatically remove deleted files from the deploy branch
