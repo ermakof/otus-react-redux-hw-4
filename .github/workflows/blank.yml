@@ -67,7 +67,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: /public  # The folder the action should deploy.
+          FOLDER: ./public  # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
 
       - name: Deploy storybook to GHP /otus-react-redux-hw-4/storybook 🚀
@@ -76,7 +76,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: /storybook-static # The folder the action should deploy.
+          FOLDER: ./storybook-static # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
 
       - name: Deploy test-report to GHP /otus-react-redux-hw-4/test-report 🚀
@@ -85,5 +85,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: /test-report # The folder the action should deploy.
+          FOLDER: ./test-report # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
