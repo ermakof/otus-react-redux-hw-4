@@ -16,4 +16,4 @@ export const Static = Template.bind({});
 
 Static.args = {
   countUsers: number('num', 50),
-}
+};

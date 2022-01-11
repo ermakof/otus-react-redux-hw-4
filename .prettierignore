@@ -1,0 +1,9 @@
+# Ignore artifacts:
+public
+coverage
+node_modules
+temp
+storybook-static
+
+# Ignore all HTML files:
+*.html

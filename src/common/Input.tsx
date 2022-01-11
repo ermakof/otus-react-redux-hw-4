@@ -7,7 +7,7 @@ const Root = styled.div`
     margin-left: 10px;
     width: 500px;
   }
-`
+`;
 
 interface IInputProps {
   onChange: (val: string) => void;
@@ -24,11 +24,10 @@ export default class Input extends PureComponent<IInputProps, IInputState> {
 
     this.state = {
       value: '',
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.input = React.createRef();
-
   }
 
   componentDidMount() {
@@ -48,23 +47,30 @@ export default class Input extends PureComponent<IInputProps, IInputState> {
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({value: e.target.value})
+    this.setState({ value: e.target.value });
   }
 
   handleKeydown = () => {
-    if (this.props.autoFocus && this.input.current && document.activeElement !== this.input.current) {
+    if (
+      this.props.autoFocus &&
+      this.input.current &&
+      document.activeElement !== this.input.current
+    ) {
       this.input.current.focus();
     }
-  }
+  };
 
   render() {
-    return <Root>
-      Поиск:
-      <input
-        role="filterInput"
-        ref={this.input}
-        autoFocus={this.props.autoFocus}
-        onChange={this.handleChange}/>
-    </Root>;
+    return (
+      <Root>
+        Поиск:
+        <input
+          role="filterInput"
+          ref={this.input}
+          autoFocus={this.props.autoFocus}
+          onChange={this.handleChange}
+        />
+      </Root>
+    );
   }
 }

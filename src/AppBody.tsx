@@ -10,7 +10,7 @@ const Root = styled.div`
   overflow-y: auto;
   margin: auto;
   width: 70%;
-  
+
   p {
     text-align: center;
   }
@@ -20,26 +20,27 @@ interface IAppBodyProps {
   data: IUserList;
 }
 class AppBody extends Component<IAppBodyProps> {
-  shouldComponentUpdate (nextProps: IAppBodyProps) {
+  shouldComponentUpdate(nextProps: IAppBodyProps) {
     // Притянутая за уши оптимизация компонента
     return nextProps.data.length !== this.props.data.length;
   }
 
   render() {
-    const {data} = this.props;
+    const { data } = this.props;
 
     return (
       <Root>
-        {
-          data.length
-            ? <ul role="dataList">
-              {
-                this.props.data.map((item) => <li key={ item.id } role="dataItem">{ item.userId } { item.title }</li>)
-              }
-            </ul>
-            : <p role="dataMessage">Нет данных</p>
-        }
-
+        {data.length ? (
+          <ul role="dataList">
+            {this.props.data.map((item) => (
+              <li key={item.id} role="dataItem">
+                {item.userId} {item.title}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p role="dataMessage">Нет данных</p>
+        )}
       </Root>
     );
   }

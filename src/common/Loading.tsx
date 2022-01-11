@@ -42,10 +42,10 @@ const Root = styled(Fullscreen)`
       width: 51px;
       height: 51px;
       margin: 6px;
-      border: 4px solid #0055A6;
+      border: 4px solid #0055a6;
       border-radius: 50%;
       animation: ${rotate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #0055A6 transparent transparent transparent;
+      border-color: #0055a6 transparent transparent transparent;
     }
 
     div:nth-child(1) {
@@ -64,16 +64,20 @@ const Root = styled(Fullscreen)`
 
 export class Loading extends PureComponent {
   render() {
-    return loading && createPortal((
-      <Root role="loading">
-        <article>
-          <div />
-          <div />
-          <div />
-          <div />
-        </article>
-      </Root>
-    ), loading)
+    return (
+      loading &&
+      createPortal(
+        <Root role="loading">
+          <article>
+            <div />
+            <div />
+            <div />
+            <div />
+          </article>
+        </Root>,
+        loading
+      )
+    );
   }
 }
 

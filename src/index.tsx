@@ -4,6 +4,9 @@ import App from '@src/App';
 
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(<StrictMode>
-  <App />
-</StrictMode>, rootElement);
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  rootElement
+);

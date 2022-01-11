@@ -13,7 +13,7 @@ const Root = styled.div`
 
 const Title = styled.div`
   margin: 10px;
-`
+`;
 
 interface IAppHeader {
   onChangeFilter: (val: string) => void;
@@ -25,10 +25,10 @@ class AppHeader extends PureComponent<IAppHeader> {
 
   render() {
     return (
-       <Root>
-         <Title role="headerTitle">Дз №4</Title>
-         <Input onChange={this.props.onChangeFilter} autoFocus={true}/>
-        </Root>
+      <Root>
+        <Title role="headerTitle">Дз №4</Title>
+        <Input onChange={this.props.onChangeFilter} autoFocus={true} />
+      </Root>
     );
   }
 }

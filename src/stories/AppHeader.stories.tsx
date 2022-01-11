@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof AppHeader> = (args) => <AppHeader {...args
 export const Static = Template.bind({});
 
 Static.args = {
-  onChangeFilter: action('changed' ),
-}
+  onChangeFilter: action('changed'),
+};

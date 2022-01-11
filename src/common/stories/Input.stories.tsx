@@ -16,6 +16,6 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 export const Static = Template.bind({});
 
 Static.args = {
-  onChange: action('changed' ),
+  onChange: action('changed'),
   autoFocus: boolean('autoFocus', true),
-}
+};

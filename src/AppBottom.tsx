@@ -17,9 +17,7 @@ class AppBottom extends PureComponent<IAppBottom> {
   render() {
     return (
       <Root>
-        <p role="userCount">
-          Количество пользователей: {this.props.countUsers}
-        </p>
+        <p role="userCount">Количество пользователей: {this.props.countUsers}</p>
       </Root>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import { Global, css } from '@emotion/core'
+import { Global, css } from '@emotion/core';
 
 import AppHeader from '@src/AppHeader';
 import AppBottom from '@src/AppBottom';
@@ -9,9 +9,8 @@ import Loading from '@src/common/Loading';
 
 const Root = styled.div`
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 `;
@@ -24,8 +23,8 @@ const appGlobal = css`
     padding: 0;
     min-height: '100vh';
     max-width: '100vw';
-    }
-  `;
+  }
+`;
 
 interface IUser {
   body: string;
@@ -49,20 +48,20 @@ class App extends Component<{}, IAppState> {
       isLoading: false,
       data: [],
       filter: '',
-    }
+    };
 
     this.handleChangeFilter = this.handleChangeFilter.bind(this);
   }
 
   async componentDidMount() {
-    this.setState({...this.state, isLoading: true})
+    this.setState({ ...this.state, isLoading: true });
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-      const data = await response.json() as IUserList;
-      this.setState({data, isLoading: false})
+      const data = (await response.json()) as IUserList;
+      this.setState({ data, isLoading: false });
       console.log(data);
     } catch {
-      this.setState({...this.state, isLoading: false})
+      this.setState({ ...this.state, isLoading: false });
     }
   }
 
@@ -71,7 +70,7 @@ class App extends Component<{}, IAppState> {
   }
 
   handleChangeFilter(filter: string) {
-    this.setState({...this.state, filter})
+    this.setState({ ...this.state, filter });
     console.log('New filter:', filter);
   }
 
@@ -79,7 +78,7 @@ class App extends Component<{}, IAppState> {
     if (!this.state.filter) {
       return this.state.data;
     }
-    return this.state.data.filter((item) => item.title.indexOf(this.state.filter) > -1 )
+    return this.state.data.filter((item) => item.title.indexOf(this.state.filter) > -1);
   }
 
   render() {
@@ -88,9 +87,9 @@ class App extends Component<{}, IAppState> {
       <>
         <Root>
           <Global styles={appGlobal} />
-          <AppHeader onChangeFilter={this.handleChangeFilter}/>
-          <AppBody data={data}/>
-          <AppBottom countUsers={data.length}/>
+          <AppHeader onChangeFilter={this.handleChangeFilter} />
+          <AppBody data={data} />
+          <AppBottom countUsers={data.length} />
         </Root>
         {this.state.isLoading && <Loading />}
       </>
