@@ -3,7 +3,7 @@
 exports[`render App 1`] = `
 <DocumentFragment>
   <div
-    class="css-16cliik"
+    class="css-5simcc"
   >
     <div
       class="css-x0l4uv"
@@ -24,7 +24,7 @@ exports[`render App 1`] = `
       </div>
     </div>
     <div
-      class="css-ezy4n0"
+      class="css-dpjq5q"
     >
       <p
         role="dataMessage"
