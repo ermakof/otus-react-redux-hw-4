@@ -55,7 +55,7 @@ jobs:
         id: Chromatic-test
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        run: npx chromatic
+        run: npx chromatic --project-token=07c0525a595b
 
       - name: Build project
         id: Project-build
