@@ -66,8 +66,9 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: develop # The branch the action should deploy to.
-          FOLDER: public  # The folder the action should deploy.
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: /otus-react-redux-hw-4/public  # The folder the action should deploy.
+          TARGET_FOLDER: /otus-react-redux-hw-4/application
           CLEAN: true # Automatically remove deleted files from the deploy branch
 
       - name: Deploy storybook to GHP /otus-react-redux-hw-4/storybook 🚀
@@ -75,8 +76,9 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: develop # The branch the action should deploy to.
-          FOLDER: storybook-static # The folder the action should deploy.
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: /otus-react-redux-hw-4/storybook-static # The folder the action should deploy.
+          TARGET_FOLDER: /otus-react-redux-hw-4/storybook
           CLEAN: true # Automatically remove deleted files from the deploy branch
 
       - name: Deploy test-report to GHP /otus-react-redux-hw-4/test-report 🚀
@@ -84,6 +86,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: develop # The branch the action should deploy to.
-          FOLDER: test # The folder the action should deploy.
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: /otus-react-redux-hw-4/temp # The folder the action should deploy.
+          TARGET_FOLDER: /otus-react-redux-hw-4/test-report
           CLEAN: true # Automatically remove deleted files from the deploy branch
